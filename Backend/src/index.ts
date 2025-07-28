@@ -21,10 +21,7 @@ app.use(
   })
 );
 
-
 app.use("/auth", authRoutes);
-
-
 
 app.get("/", (_req, res) => {
   res.send("Welcome to Notely");
