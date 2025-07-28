@@ -120,35 +120,12 @@ const DashboardContent = ({ toggleTheme, darkMode }: any) => {
 
         <Box>
           <Divider />
-          <List>
-            {menuItems.map((item) => (
-              <ListItem
-                button
-                key={item.text}
-                onClick={() => navigate(item.path)}
-                selected={location.pathname === item.path}
-                sx={{ px: 2 }}
-              >
-                <Tooltip title={!drawerOpen ? item.text : ""} placement="right">
-                  <ListItemIcon sx={{ color: teal[500], minWidth: 40 }}>
-                    {item.icon}
-                  </ListItemIcon>
-                </Tooltip>
-                {drawerOpen && <ListItemText primary={item.text} />}
-              </ListItem>
-            ))}
-          </List>
+          
         </Box>
 
       
         <Box sx={{ p: 2 }}>
           <Divider />
-          <ListItem
-            button
-            onClick={() => navigate("/dashboard/profile")}
-            selected={location.pathname === "/dashboard/profile"}
-            sx={{ mt: 1 }}
-          >
             <Tooltip title={!drawerOpen ? "Profile" : ""} placement="right">
               <ListItemIcon sx={{ color: teal[400] }}>
                 <Person />
@@ -171,58 +148,58 @@ const DashboardContent = ({ toggleTheme, darkMode }: any) => {
       </Drawer>
 
      
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          mt: 8,
-        }}
-      >
+//       <Box
+//         component="main"
+//         sx={{
+//           flexGrow: 1,
+//           p: 3,
+//           mt: 8,
+//         }}
+//       >
        
-        <Box>
-          <Typography variant="h6" mb={2} fontWeight="bold">
-            📌 Pinned Notes
-          </Typography>
-          <Box display="flex" gap={2} flexWrap="wrap">
-            {fakePinnedNotes.map((note) => (
-              <Card key={note.id} sx={{ width: 280, bgcolor: darkMode ? "#2c2c2c" : "#ffffff" }}>
-                <CardContent>
-                  <Typography fontWeight="bold">{note.title}</Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {note.body}
-                  </Typography>
-                </CardContent>
-              </Card>
-            ))}
-          </Box>
-        </Box>
+//         <Box>
+//           <Typography variant="h6" mb={2} fontWeight="bold">
+//             📌 Pinned Notes
+//           </Typography>
+//           <Box display="flex" gap={2} flexWrap="wrap">
+//             {fakePinnedNotes.map((note) => (
+//               <Card key={note.id} sx={{ width: 280, bgcolor: darkMode ? "#2c2c2c" : "#ffffff" }}>
+//                 <CardContent>
+//                   <Typography fontWeight="bold">{note.title}</Typography>
+//                   <Typography variant="body2" color="text.secondary">
+//                     {note.body}
+//                   </Typography>
+//                 </CardContent>
+//               </Card>
+//             ))}
+//           </Box>
+//         </Box>
 
-        <Box mt={4}>
-          <Outlet />
-        </Box>
-      </Box>
+//         <Box mt={4}>
+//           <Outlet />
+//         </Box>
+//       </Box>
 
-      <SpeedDial
-  ariaLabel="Dashboard Actions"
-  sx={{ position: "fixed", bottom: 16, right: 16 }}
-  icon={<Add />}
->
-  <SpeedDialAction
-    icon={<NoteAdd />}
-    tooltipTitle="New Note"
-    onClick={() => navigate("/create")}
-  />
-  <SpeedDialAction
-    icon={<Lightbulb />}
-    tooltipTitle="AI Assistant"
-  />
-</SpeedDial>
+//       <SpeedDial
+//   ariaLabel="Dashboard Actions"
+//   sx={{ position: "fixed", bottom: 16, right: 16 }}
+//   icon={<Add />}
+// >
+//   <SpeedDialAction
+//     icon={<NoteAdd />}
+//     tooltipTitle="New Note"
+//     onClick={() => navigate("/create")}
+//   />
+//   <SpeedDialAction
+//     icon={<Lightbulb />}
+//     tooltipTitle="AI Assistant"
+//   />
+// </SpeedDial>
 
 
-    </Box>
-  );
-};
+//     </Box>
+//   );
+// };
 
 
 const Dashboard = () => {
