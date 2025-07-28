@@ -36,7 +36,7 @@ const Register = () => {
     setSuccess('');
 
     try {
-      const response = await axios.post('/auth/register', {
+      await axios.post('/auth/register', {
         ...form,
       });
 
@@ -46,7 +46,6 @@ const Register = () => {
       setError(err.response?.data?.message || 'Registration failed');
     }
   };
-
   return (
     <Box
       sx={{

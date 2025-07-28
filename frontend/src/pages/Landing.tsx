@@ -131,8 +131,6 @@ const Landing = () => {
               <Box sx={{ flex: 1, maxWidth: 500 }}>
                 <Box
                   component="img"
-                  src="https://source.unsplash.com/featured/?notebook,desk"
-                  alt="Notely Illustration"
                   sx={{
                     width: "100%",
                     borderRadius: 4,
