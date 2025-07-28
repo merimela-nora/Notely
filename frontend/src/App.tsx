@@ -16,7 +16,7 @@ function App() {
     <BrowserRouter>
       <Routes>
 
-        {/* 🌐 Public routes */}
+  
         <Route element={<PublicLayout />}>
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
