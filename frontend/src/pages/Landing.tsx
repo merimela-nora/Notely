@@ -12,7 +12,7 @@ import {
   CssBaseline,
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
-import { teal, grey } from "@mui/material/colors";
+import { teal } from "@mui/material/colors";
 import { useNavigate } from "react-router-dom";
 
 const theme = createTheme({
@@ -144,7 +144,7 @@ const Landing = () => {
           </Paper>
         </Container>
 
-        {/* Testimonials */}
+    
         <Container sx={{ mt: 10 }}>
           <Typography
             variant="h4"

@@ -14,7 +14,7 @@ import {
   SpeedDialAction,
   Divider,
   Tooltip,
-  Avatar
+  ListItemButton,
 } from "@mui/material";
 import {
   Add,
@@ -50,7 +50,6 @@ const Dashboard = () => {
     <Box sx={{ display: "flex", backgroundColor: "#f1fafa", minHeight: "100vh" }}>
       <CssBaseline />
 
-     
       <AppBar
         position="fixed"
         sx={{
@@ -109,19 +108,18 @@ const Dashboard = () => {
           <Divider />
           <List>
             {menuItems.map((item) => (
-              <ListItem
-                button
-                key={item.text}
-                onClick={() => navigate(item.path)}
-                selected={location.pathname === item.path}
-                sx={{ px: 2 }}
-              >
+              <ListItem disablePadding key={item.text} sx={{ px: 2 }}>
                 <Tooltip title={!drawerOpen ? item.text : ""} placement="right">
-                  <ListItemIcon sx={{ color: teal[500], minWidth: 40 }}>
-                    {item.icon}
-                  </ListItemIcon>
+                  <ListItemButton
+                    onClick={() => navigate(item.path)}
+                    selected={location.pathname === item.path}
+                  >
+                    <ListItemIcon sx={{ color: teal[500], minWidth: 40 }}>
+                      {item.icon}
+                    </ListItemIcon>
+                    {drawerOpen && <ListItemText primary={item.text} />}
+                  </ListItemButton>
                 </Tooltip>
-                {drawerOpen && <ListItemText primary={item.text} />}
               </ListItem>
             ))}
           </List>
@@ -129,33 +127,34 @@ const Dashboard = () => {
 
         <Box sx={{ p: 2 }}>
           <Divider />
-          <ListItem
-            button
-            onClick={() => navigate("/dashboard/profile")}
-            selected={location.pathname === "/dashboard/profile"}
-            sx={{ mt: 1 }}
-          >
-            <Tooltip title={!drawerOpen ? "Profile" : ""} placement="right">
-              <ListItemIcon sx={{ color: teal[400] }}>
-                <Person />
-              </ListItemIcon>
-            </Tooltip>
-            {drawerOpen && (
-              <ListItemText
-                primary={
-                  <Box>
-                    <Typography fontWeight="bold">{user.name}</Typography>
-                    <Typography variant="caption" color="text.secondary">
-                      My Profile
-                    </Typography>
-                  </Box>
-                }
-              />
-            )}
-          </ListItem>
+          <List>
+            <ListItem disablePadding sx={{ mt: 1 }}>
+              <Tooltip title={!drawerOpen ? "Profile" : ""} placement="right">
+                <ListItemButton
+                  onClick={() => navigate("/dashboard/profile")}
+                  selected={location.pathname === "/dashboard/profile"}
+                >
+                  <ListItemIcon sx={{ color: teal[400] }}>
+                    <Person />
+                  </ListItemIcon>
+                  {drawerOpen && (
+                    <ListItemText
+                      primary={
+                        <Box>
+                          <Typography fontWeight="bold">{user.name}</Typography>
+                          <Typography variant="caption" color="text.secondary">
+                            My Profile
+                          </Typography>
+                        </Box>
+                      }
+                    />
+                  )}
+                </ListItemButton>
+              </Tooltip>
+            </ListItem>
+          </List>
         </Box>
       </Drawer>
-
 
       <Box
         component="main"
@@ -169,7 +168,6 @@ const Dashboard = () => {
         <Outlet />
       </Box>
 
-      
       <SpeedDial
         ariaLabel="Dashboard Actions"
         sx={{ position: "fixed", bottom: 16, right: 16 }}
