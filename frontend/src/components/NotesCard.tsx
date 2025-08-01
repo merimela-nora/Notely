@@ -18,9 +18,10 @@ import {
 } from "@mui/icons-material";
 import { teal, grey } from "@mui/material/colors";
 import { useState } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 interface NoteCardProps {
+  id: string; 
   title: string;
   content: string;
   tags?: string[];
@@ -33,18 +34,19 @@ interface NoteCardProps {
 }
 
 const NoteCard = ({
+  id,
   title,
   content,
   tags = [],
   bookmarked = false,
   isPrivate = false,
-  onEdit,
   onDelete,
   onToggleBookmark,
   onTogglePrivacy,
 }: NoteCardProps) => {
   const [localBookmark, setLocalBookmark] = useState(bookmarked);
   const [localPrivate, setLocalPrivate] = useState(isPrivate);
+  const navigate = useNavigate(); 
 
   const handleBookmark = () => {
     setLocalBookmark((prev) => !prev);
@@ -55,6 +57,11 @@ const NoteCard = ({
     setLocalPrivate((prev) => !prev);
     onTogglePrivacy?.();
   };
+
+  const handleEdit = (id: string) => {
+    navigate(`/dashboard/edit/${id}`); 
+  };
+  
 
   return (
     <Card
@@ -107,7 +114,7 @@ const NoteCard = ({
 
         <Box display="flex" justifyContent="flex-end" gap={1}>
           <Tooltip title="Edit">
-            <IconButton size="small" onClick={onEdit}>
+            <IconButton size="small" onClick={() => handleEdit(id)}>
               <Edit fontSize="small" />
             </IconButton>
           </Tooltip>
@@ -116,6 +123,7 @@ const NoteCard = ({
               <Delete fontSize="small" color="error" />
             </IconButton>
           </Tooltip>
+        
         </Box>
       </CardContent>
     </Card>

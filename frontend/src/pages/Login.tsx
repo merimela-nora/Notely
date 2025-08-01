@@ -9,8 +9,11 @@ import {
   Alert,
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
+import { useMutation } from "@tanstack/react-query";
 import { useState } from 'react';
 import axios from "../Api/Axios";
+import cookie from 'js-cookie';
+let ser:any =""
 
 const Login = () => {
   const navigate = useNavigate();
@@ -18,18 +21,44 @@ const Login = () => {
   const [identifier, setIdentifier] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [isLoading, setLoading] = useState(false);
+  const [mes, setMes] = useState('');
+
+  // const { isPending, mutate } = useMutation({
+  //   mutationKey: ["login_users"],
+  //   mutationFn: async (loginDetails: LoginDetails) => {
+  //     const response = await axiosInstance.post("/auth/login", loginDetails);
+  //     return response.data;
+  //   },_
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    cookie.set('name', identifier, { expires: 7 });
+  
+    setMes("Loading Please Wait...")
+    ser ="success";
 
     try {
-      await axios.post('/auth/login', { identifier, password });
+     const response =  await axios.post('/auth/login', { identifier, password });
+     const UserId = JSON.parse(JSON.stringify(response.data.id));  
+     cookie.set('id', UserId, { expires: 7 });  
+     setLoading(true);
+     if (response.status === 200) {
       navigate('/dashboard');
+     }
+     else{
+      setError('Invalid credentials, please try again.');
+     }
+    
     } catch (err: any) {
       setError(err.response?.data?.message || 'Login failed');
     }
+    finally{
+      setLoading(false);
+    }
   };
+
 
   return (
     <Box
@@ -49,11 +78,12 @@ const Login = () => {
               <Typography variant="h5" fontWeight="bold" textAlign="center">
                 Login to Notely
               </Typography>
+              <Alert severity={ser}>{mes}</Alert>
 
               {error && <Alert severity="error">{error}</Alert>}
 
               <TextField
-                label="Email or Username"
+                label="Username"
                 variant="outlined"
                 fullWidth
                 required
@@ -71,8 +101,13 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
 
-              <Button type="submit" variant="contained" color="primary" fullWidth size="large">
-                Submit
+              <Button type="submit"
+               disabled={isLoading}
+               variant="contained"
+                color="primary" 
+                fullWidth size="large">
+                {isLoading? "signing in.... " :"Sign In"}
+          
               </Button>
 
               <Typography variant="body2" textAlign="center">

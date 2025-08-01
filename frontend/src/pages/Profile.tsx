@@ -8,6 +8,22 @@ import {
   Box,
   Button,
 } from "@mui/material";
+import Cookie from "js-cookie";
+import axiosInstance from "../Api/Axios";
+
+
+const value1= Cookie.get('name');
+async function fetchUserDetails() {
+  try {
+    const response = await axiosInstance.get("/user/user/juuuu");
+    alert(response)
+    return response.data;
+  } catch (error) {
+    console.error("Failed to fetch user details:", error);
+    return null;
+  }
+}
+fetchUserDetails();
 
 function Profile() {
   return (
@@ -38,7 +54,7 @@ function Profile() {
               mb: 1,
             }}
           >
-            CN
+            {value1[0].toUpperCase()}
           </Avatar>
 
           <Button variant="outlined" component="label" size="small">

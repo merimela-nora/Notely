@@ -8,15 +8,16 @@ const Private = () => {
         🔒 Private Notes
       </Typography>
       <Stack direction="row" spacing={2} flexWrap="wrap">
-        {[4, 5].map((note) => (
+        {[4].map((note) => (
           <NoteCard
             key={note}
+            id={note.toString()} 
             title={`Private Note ${note}`}
-            content="This is a private note only visible to you."
+            content="This is a private note with sensitive information."
             tags={["private", "confidential"]}
             bookmarked={false}
             isPrivate={true}
-            onEdit={() => console.log("Edit private", note)}
+            onEdit={() => console.log("Edit private", note)} 
             onDelete={() => console.log("Delete private", note)}
             onToggleBookmark={() => console.log("Bookmark toggle", note)}
             onTogglePrivacy={() => console.log("Privacy toggle", note)}
