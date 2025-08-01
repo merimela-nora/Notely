@@ -15,7 +15,6 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 // http://localhost:5173
-// https://notely-o6vj.vercel.app
 app.use(
   cors({
     origin: "https://notely-front.vercel.app",
