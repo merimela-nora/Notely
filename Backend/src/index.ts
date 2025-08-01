@@ -18,7 +18,7 @@ app.use(cookieParser());
 // https://notely-o6vj.vercel.app
 app.use(
   cors({
-    origin: "https://notely-eta.vercel.app",
+    origin: "https://notely-front.vercel.app",
     credentials: true,
     methods: ["POST", "DELETE", "GET", "PUT", "PATCH"],
   })
