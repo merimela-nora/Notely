@@ -35,7 +35,7 @@ const Notes: React.FC = () => {
       const res = await axiosInstance.get("/note/notes");
       if (Array.isArray(res.data)) {
 
-        // const Note = JSON.parse(JSON.stringify(res.data));
+        // const NoteID = JSON.parse(JSON.stringify(res.data));
         setNotes(res.data);
       } else {
         console.error("Unexpected data:", res.data);

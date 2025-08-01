@@ -21,7 +21,7 @@ interface NotePayload {
   userId: any;
 }
 const UserId = cookie.get('id');
-alert(UserId);
+
 
 const Create: React.FC = () => {
   const navigate = useNavigate();
