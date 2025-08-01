@@ -25,16 +25,18 @@ model User {
 }
 
 model Note {
-  id        String   @id @default(uuid())
-  title     String   @map("title")
-  synopsis  String   @map("synopsis")
-  content   String   @map("content")
-  isDeleted Boolean  @default(false) @map("isDeleted")
-  createdAt DateTime @default(now()) @map("createdAt")
-  updatedAt DateTime @updatedAt @map("updatedAt")
-
-  userId String
-  user   User   @relation(fields: [userId], references: [id])
+  id         String   @id @default(uuid())
+  title      String
+  synopsis   String
+  content    String
+  isDeleted  Boolean  @default(false)
+  isPrivate  Boolean  @default(false)  
+  isBookmarked Boolean @default(false) 
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
 
   @@map("Note")
 }
