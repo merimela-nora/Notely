@@ -8,15 +8,15 @@ import {
   softDeleteEntry,
   restoreEntry,
   getTrashedNotes,
-toggleBookmark,
-togglePrivacy,
+// toggleBookmark,
+// togglePrivacy,
 } from "../controllers/note.controllers";
 
 
 const router = express.Router();
 
-router.patch("/notes/:id/bookmark", toggleBookmark);
-router.patch("/notes/:id/privacy",  togglePrivacy);
+// router.patch("/notes/:id/bookmark", toggleBookmark);
+// router.patch("/notes/:id/privacy",  togglePrivacy);
 router.post("/createNotes", createEntry);
 router.get("/notes", getNotes);
 router.get("/notesID/:id",  getEntryById);

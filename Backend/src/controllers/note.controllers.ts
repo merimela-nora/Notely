@@ -35,39 +35,39 @@ export const getNotes = async (_req:Request, res:Response) => {
   }
 };
 
-export const toggleBookmark = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  try {
-    const note = await prisma.note.update({
-      where: { id },
-      data: {
-        isBookmarked: {
-          set: req.body.isBookmarked,
-        },
-      },
-    });
-    res.status(200).json(note);
-  } catch (error) {
-    res.status(500).json({ message: "Bookmark toggle failed" });
-  }
-};
+// export const toggleBookmark = async (req: Request, res: Response) => {
+//   const { id } = req.params;
+//   try {
+//     const note = await prisma.note.update({
+//       where: { id },
+//       data: {
+//         isBookmarked: {
+//           set: req.body.isBookmarked,
+//         },
+//       },
+//     });
+//     res.status(200).json(note);
+//   } catch (error) {
+//     res.status(500).json({ message: "Bookmark toggle failed" });
+//   }
+// };
 
-export const togglePrivacy = async (req: Request, res: Response) => {
-  const { id } = req.params;
-  try {
-    const note = await prisma.note.update({
-      where: { id },
-      data: {
-        isPrivate: {
-          set: req.body.isPrivate,
-        },
-      },
-    });
-    res.status(200).json(note);
-  } catch (error) {
-    res.status(500).json({ message: "Privacy toggle failed" });
-  }
-};
+// export const togglePrivacy = async (req: Request, res: Response) => {
+//   const { id } = req.params;
+//   try {
+//     const note = await prisma.note.update({
+//       where: { id },
+//       data: {
+//         isPrivate: {
+//           set: req.body.isPrivate,
+//         },
+//       },
+//     });
+//     res.status(200).json(note);
+//   } catch (error) {
+//     res.status(500).json({ message: "Privacy toggle failed" });
+//   }
+// };
 
 
 
