@@ -54,7 +54,7 @@ function Profile() {
               mb: 1,
             }}
           >
-            {value1[0].toUpperCase()}
+            {value1?.[0]?.toUpperCase() || "?"}
           </Avatar>
 
           <Button variant="outlined" component="label" size="small">

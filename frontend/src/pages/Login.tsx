@@ -9,7 +9,6 @@ import {
   Alert,
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import { useMutation } from "@tanstack/react-query";
 import { useState } from 'react';
 import axios from "../Api/Axios";
 import cookie from 'js-cookie';
@@ -24,12 +23,6 @@ const Login = () => {
   const [isLoading, setLoading] = useState(false);
   const [mes, setMes] = useState('');
 
-  // const { isPending, mutate } = useMutation({
-  //   mutationKey: ["login_users"],
-  //   mutationFn: async (loginDetails: LoginDetails) => {
-  //     const response = await axiosInstance.post("/auth/login", loginDetails);
-  //     return response.data;
-  //   },_
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
